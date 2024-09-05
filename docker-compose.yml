@@ -6,7 +6,10 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: tasks_back
-    command: python manage.py runserver ${SERVER_HOST}:${SERVER_PORT}
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py runserver ${SERVER_HOST}:${SERVER_PORT}"
     env_file:
       - .env
     ports:

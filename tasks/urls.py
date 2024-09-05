@@ -9,7 +9,8 @@ from tasks.views import (
 urlpatterns = [
     # Project endpoints
     path("projects/", ProjectListCreateView.as_view(), name="project-list-create"),
-    path("projects/<int:id>/", ProjectDetailView.as_view(), name="project-detail"),
+    # path("projects/", ProjectCreateView.as_view(), name="project-create"),
+    path("projects/<int:pk>/", ProjectDetailView.as_view(), name="project-detail"),
     # Task endpoints
     path(
         "projects/<int:project_id>/tasks/",
@@ -17,7 +18,7 @@ urlpatterns = [
         name="task-list-create",
     ),
     path(
-        "projects/<int:project_id>/tasks/<int:id>/",
+        "projects/<int:project_id>/tasks/<int:pk>/",
         TaskDetailView.as_view(),
         name="task-detail",
     ),

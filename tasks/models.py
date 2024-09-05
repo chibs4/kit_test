@@ -2,10 +2,13 @@ from django.db import models
 
 
 class Project(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     description = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "projects"
 
 
 class Task(models.Model):
@@ -22,3 +25,6 @@ class Task(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     project = models.ForeignKey(Project, related_name="tasks", on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = "tasks"

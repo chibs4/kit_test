@@ -19,6 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # env
 # Load environment variables from .env file
 env_path = Path("..") / ".env"
+# env_path = Path(".") / ".env"
 load_dotenv(dotenv_path=env_path)
 
 # Quick-start development settings - unsuitable for production
@@ -94,6 +95,14 @@ DATABASES = {
 
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,  # Number of items per page
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": os.getenv("PROJECT_NAME"),
+    "VERSION": os.getenv("VERSION"),
+    "SERVE_INCLUDE_SCHEMA": False,
 }
 
 
