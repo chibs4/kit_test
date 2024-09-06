@@ -20,6 +20,7 @@ from django.urls import path, include
 
 
 urlpatterns = [
+    path("api/", include("projects.urls")),
     path("api/", include("tasks.urls")),
     path("api/docs/", SpectacularAPIView.as_view(), name="docs"),
     path(

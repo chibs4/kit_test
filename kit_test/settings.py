@@ -18,8 +18,8 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 # env
 # Load environment variables from .env file
-env_path = Path("..") / ".env"
-# env_path = Path(".") / ".env"
+# env_path = Path("..") / ".env"
+env_path = Path(".") / ".env"
 load_dotenv(dotenv_path=env_path)
 
 # Quick-start development settings - unsuitable for production
@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "drf_spectacular",
+    "django_filters",
+    "projects",
     "tasks",
 ]
 
@@ -96,7 +98,11 @@ DATABASES = {
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 10,  # Number of items per page
+    "PAGE_SIZE": 10,
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+        "rest_framework.filters.OrderingFilter",
+    ],
 }
 
 SPECTACULAR_SETTINGS = {
