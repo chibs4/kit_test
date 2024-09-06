@@ -9,7 +9,7 @@ class Task(models.Model):
         in_progress = "in-progress"
         completed = "completed"
 
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, unique=True)
     description = models.TextField(null=True, blank=True)
     due_date = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=20, choices=Status, default=Status.todo)
